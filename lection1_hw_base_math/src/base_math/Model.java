@@ -9,17 +9,12 @@ public class Model {
         this.b = b;
     }
 
-    public void setA(double a) {
-        this.a = a;
+    public double getA() {
+        return a;
     }
 
-    public void setB(double b) {
-        this.b = b;
-    }
-
-    public Model() {
-        this.a = 0;
-        this.b = 0;
+    public double getB() {
+        return b;
     }
 
     public double add() {
@@ -38,7 +33,6 @@ public class Model {
         try {
             return a / b;
         } catch (ArithmeticException e) {
-            System.out.println("division by zero");
             return a * Double.POSITIVE_INFINITY;
         }
     }
