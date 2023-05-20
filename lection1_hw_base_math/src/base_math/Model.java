@@ -16,10 +16,14 @@ public class Model {
     public double getB() {
         return b;
     }
-
+    /**
+     * Сложение
+     * @return возвр сумму
+     */
     public double add() {
         return a + b;
     }
+
 
     public double sub() {
         return a - b;
@@ -29,6 +33,10 @@ public class Model {
         return a * b;
     }
 
+    /**
+     * метод деления, если делитель это 0, то вернёт бесконечность
+     * @return a/b or Infnity
+     */
     public double div() {
         try {
             return a / b;
@@ -36,4 +44,5 @@ public class Model {
             return a * Double.POSITIVE_INFINITY;
         }
     }
+
 }

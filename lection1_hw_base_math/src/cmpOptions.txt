@@ -1,0 +1,4 @@
+.\src\Controller.java
+-sourcepath .\src
+
+-d .\compiled\
