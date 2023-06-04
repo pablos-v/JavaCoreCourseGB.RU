@@ -1,6 +1,7 @@
 package seminar3;
 
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class EmployersArray implements Iterator<Person> {
     int index;
@@ -21,3 +22,4 @@ public class EmployersArray implements Iterator<Person> {
         return allPersons[index++];
     }
 }
+

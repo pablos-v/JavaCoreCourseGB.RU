@@ -1,5 +1,11 @@
 package seminar3;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * 1. Построить три класса (базовый и 2 потомка), описывающих некоторых работников с почасовой оплатой (один из потомков)
  * и фиксированной оплатой (второй потомок).
@@ -18,16 +24,21 @@ public class Main {
                 new HourEmployee(700, "Egor", 3),
                 new FixPayEmployee(70_000, "Liza", 4)
         };
-        for (Person p:employers){
+        for (Person p : employers) {
             System.out.println(p.salaryCounter());
         }
 
         System.out.println("--------------");
 
         EmployersArray forIterable = new EmployersArray(employers);
-        employers[1].rate = 1;
-        while (forIterable.hasNext()){
+        while (forIterable.hasNext()) {
             System.out.println(forIterable.next().salaryCounter());
         }
+
+        System.out.println("--------------");
+
+//        for (Person per: forIterable){
+//            System.out.println(per.salaryCounter());
+//        }
     }
 }
