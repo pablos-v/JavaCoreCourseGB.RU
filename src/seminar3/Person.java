@@ -1,8 +1,6 @@
 package seminar3;
 
-import java.util.Iterator;
-
-public abstract class Person {
+public abstract class Person implements Comparable<Person> {
     int rate;
     String name;
     int ID;
@@ -15,4 +13,13 @@ public abstract class Person {
 
     public abstract double salaryCounter();
 
+    public int compareTo(Person o) {
+        if (this.salaryCounter() > o.salaryCounter()){
+            return 1;
+        }
+        if (this.salaryCounter() < o.salaryCounter()){
+            return -1;
+        }
+        else return 0;
+    }
 }
