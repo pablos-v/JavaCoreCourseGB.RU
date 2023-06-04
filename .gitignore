@@ -31,3 +31,7 @@ bin/
 .DS_Store
 
 /JAVA.iml
+/lection2_hw_caesar/lection2_hw_caesar.iml
+/lection2_hw_caesar/.idea/misc.xml
+/lection2_hw_caesar/.idea/modules.xml
+/lection2_hw_caesar/.idea/vcs.xml

@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 1. Построить три класса (базовый и 2 потомка), описывающих некоторых работников с почасовой оплатой (один из потомков)
+ * Построить три класса (базовый и 2 потомка), описывающих некоторых работников с почасовой оплатой (один из потомков)
  * и фиксированной оплатой (второй потомок).
  * а) Описать в базовом классе абстрактный метод для расчёта среднемесячной заработной платы.
  * Для «повременщиков» формула для расчета такова: «среднемесячная заработная плата = 20.8 * 8 * почасовая ставка»,
@@ -18,6 +18,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
+        // задания а) и б)
         Person[] employers = {
                 new HourEmployee(500, "Ivan", 1),
                 new FixPayEmployee(100_000, "Maria", 2),
@@ -30,15 +31,11 @@ public class Main {
 
         System.out.println("--------------");
 
+        // задание г)
         EmployersArray forIterable = new EmployersArray(employers);
-        while (forIterable.hasNext()) {
-            System.out.println(forIterable.next().salaryCounter());
+
+        for (Person pers : forIterable) {
+            System.out.println(pers.salaryCounter());
         }
-
-        System.out.println("--------------");
-
-//        for (Person per: forIterable){
-//            System.out.println(per.salaryCounter());
-//        }
     }
 }
