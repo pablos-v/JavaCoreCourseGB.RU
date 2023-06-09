@@ -22,7 +22,7 @@ public class ArraySummarizer {
                 try {
                     res += Integer.parseInt(arr[i][j]);
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException("Data error in row " + i + " column " + j);
+                    throw new MyArrayDataException("Data error", i, j);
                 }
             }
         }
