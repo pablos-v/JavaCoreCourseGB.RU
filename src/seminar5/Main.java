@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -40,15 +39,20 @@ public class Main {
         return Files.readString(file).contains(word);
     }
 
-    public boolean wordDeepFinder(Path folder, String word) {
+    public boolean wordDeepFinder(Path f, String word) throws IOException {
+        File folder = new File(f.toUri());
 
-        return true;
+        for (File file : folder.listFiles()) {
+            if (wordFinder(file.toPath(), word)) return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) throws IOException {
         Main program = new Main();
-        Path file1 = Files.createFile(Path.of("./file1.txt"));
-        Path file2 = Files.createFile(Path.of("./file2.txt"));
+        Files.createDirectory(Path.of("./seminar5"));
+        Path file1 = Files.createFile(Path.of("./seminar5/file1.txt"));
+        Path file2 = Files.createFile(Path.of("./seminar5/file2.txt"));
 
         Files.writeString(file1, program.stringGenerator(10));
         Files.writeString(file2, program.stringGenerator(20));
@@ -56,5 +60,7 @@ public class Main {
         program.fileMerger(file1, file2);
 
         System.out.println(program.wordFinder(file2, Files.readString(file1)));
+
+        System.out.println(program.wordDeepFinder(Path.of("./seminar5"), Files.readString(file1)));
     }
 }
