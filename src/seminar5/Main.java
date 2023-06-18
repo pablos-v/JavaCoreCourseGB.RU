@@ -23,6 +23,7 @@ public class Main {
         Random rand = new Random();
         StringBuilder sb = new StringBuilder(num);
 
+        int dd;
         for (int i = 0; i < num; i++) {
             int index = rand.nextInt(letters.length());
             sb.append(letters.charAt(index));
