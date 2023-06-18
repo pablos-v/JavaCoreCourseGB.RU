@@ -1,7 +1,6 @@
 package leet_code;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
@@ -14,29 +13,30 @@ import java.util.Map;
  * Every close bracket has a corresponding open bracket of the same type.
  */
 class Solution {
-    /**
-     * works only for consecutive characters...
-     */
+
     public boolean isValid(String s) {
         Map<Character, Character> map = new HashMap<>();
-        map.put('(', ')');
-        map.put('{', '}');
-        map.put('[', ']');
+        map.put(')', '(');
+        map.put('}', '{');
+        map.put(']', '[');
+        Stack<Character> stack = new Stack<>();
 
-        try {
-            for (int i = 0; i < s.length(); i++) {
-                if (!(s.charAt(i + 1) == map.get(s.charAt(i++)))) return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsValue(s.charAt(i))) {
+                stack.push(s.charAt(i));
+            } else {
+                if (!stack.empty() && stack.peek().equals(map.get(s.charAt(i)))) {
+                    stack.pop();
+                } else return false;
             }
-        } catch (StringIndexOutOfBoundsException e) {
-            return false;
         }
-        return true;
+        return stack.empty();
     }
 
     public static void main(String[] args) {
         Solution s = new Solution();
         System.out.println(s.isValid("(){}["));
         System.out.println(s.isValid("(){}[]"));
-        System.out.println(s.isValid("("));
+        System.out.println(s.isValid("([])"));
     }
 }
