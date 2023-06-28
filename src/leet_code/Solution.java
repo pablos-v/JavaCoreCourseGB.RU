@@ -1,47 +1,64 @@
 package leet_code;
 
+
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
- Given a string, find the length of the longest substring in it with no more than K distinct characters.
-
- Example 1:
- Input: String="araaci", K=2
- Output: 4
- Explanation: The longest substring with no more than '2' distinct characters is "araa".
-
- Example 2:
- Input: String="araaci", K=1
- Output: 2
- Explanation: The longest substring with no more than '1' distinct characters is "aa".
-
- Example 3:
- Input: String="cbbebi", K=3
- Output: 5
+ * Given a string and a positive number k, find the longest substring of the string containing k distinct characters.
+ * If k is more than the total number of distinct characters in the string, return the whole string.
  */
 class Solution {
 
-    public int countSubstring(String str, int K){
-        int res = 0;
-        if (K <= 0) return res;
-        HashSet<Character> set = new HashSet<>();
+    public String finder(String str, int k) {
 
-        for (int j = 0; j < str.length(); j++) {
-            for (int i = j; i < str.length(); i++) {
-                set.add(str.charAt(i));
-                if (set.size() > K) break;
-                if (set.size() == K) res = Math.max(res, i-j+1);
+        if (str == null || str.length() == 0) return str;
+
+        // stores the longest substring boundaries
+        int end = 0, begin = 0;
+
+        // set to store distinct characters in a window
+        Set<Character> window = new HashSet<>();
+
+        HashMap<Character, Integer> freq = new HashMap<>();
+        int left = 0;
+
+        for (int right = 0; right < str.length(); right++) {
+            window.add(str.charAt(right));
+
+            int val = freq.getOrDefault(str.charAt(right), 0);
+            freq.put(str.charAt(right), ++val);
+
+            // if the window size is more than `k`, remove characters from the left
+            while (window.size() > k) {
+                val = freq.get(str.charAt(left));
+                freq.put(str.charAt(left), --val);
+                // If the leftmost character's frequency becomes 0 after
+                // removing it in the window, remove it from the set as well
+                if (freq.get(str.charAt(left)) == 0) window.remove(str.charAt(left));
+                left++;        // reduce window size
             }
-            set.clear();
 
+            // update the maximum window size if necessary
+            if (end - begin < right - left) {
+                end = right;
+                begin = left;
+            }
         }
-        return res;
+
+        // return the longest substring found at `str[begin…end]`
+        return str.substring(begin, end + 1);
     }
+
+
     public static void main(String[] args) {
         Solution s = new Solution();
-        System.out.println(s.countSubstring("araaci", 2) == 4);
-        System.out.println(s.countSubstring("araaci", 1) == 2);
-        System.out.println(s.countSubstring("fxcbbebi", 3) == 5);
-        System.out.println(s.countSubstring("rrrrr", 1) == 5);
+
+        System.out.println(s.finder("abcbdbdbbdcdabd", 2).equals("bdbdbbd"));
+        System.out.println(s.finder("abcbdbdbbdcdabd", 5).equals("abcbdbdbbdcdabd"));
+        System.out.println(s.finder("abcbdbdbbdcdabd", 3).equals("bcbdbdbbdcd"));
+        System.out.println(s.finder("ggwwweqqq", 3).equals("wwweqqq"));
+
     }
 }

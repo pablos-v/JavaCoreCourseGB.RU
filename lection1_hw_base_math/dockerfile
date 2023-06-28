@@ -1,7 +1,0 @@
-FROM openjdk as NewProject
-COPY ./src ./dsrc
-RUN mkdir ./output
-RUN javac -sourcepath ./dsrc -d output dsrc/Controller.java
-
-FROM scratch as OutputFiles
-COPY --from=NewProject /output /dockerOnTheFly

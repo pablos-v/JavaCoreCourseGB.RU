@@ -1,5 +1,0 @@
-FROM openjdk
-COPY ./src ./dsrc
-RUN mkdir ./output
-RUN javac -sourcepath ./dsrc -d output dsrc/Controller.java
-CMD java -classpath ./output Controller
