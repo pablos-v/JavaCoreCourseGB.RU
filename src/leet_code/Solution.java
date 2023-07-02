@@ -1,64 +1,45 @@
 package leet_code;
 
-
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * Given a string and a positive number k, find the longest substring of the string containing k distinct characters.
- * If k is more than the total number of distinct characters in the string, return the whole string.
+ * Find all substrings of a string that contains all characters of another string.
+ * In other words, find all substrings of the first string that are anagrams of the second string.
+ * <p>
+ * Please note that the problem specifically targets substrings that are contiguous
+ * (i.e., occupy consecutive positions) and inherently maintains the order of elements.
+ * <p>
+ * For example,
+ * <p>
+ * The first string is 'XYYZXZYZXXYZ'
+ * The second string is 'XYZ'
+ * <p>
+ * Anagram 'YZX' present at index 2
+ * Anagram 'XZY' present at index 4
+ * Anagram 'YZX' present at index 6
+ * Anagram 'XYZ' present at index 9
  */
 class Solution {
 
-    public String finder(String str, int k) {
-
-        if (str == null || str.length() == 0) return str;
-
-        // stores the longest substring boundaries
-        int end = 0, begin = 0;
-
-        // set to store distinct characters in a window
-        Set<Character> window = new HashSet<>();
-
-        HashMap<Character, Integer> freq = new HashMap<>();
+    public void finder(String one, String two) {
+        HashMap<Character, Integer> twoMap = PablosLibrary.stringToMap(two);
+        int windowSize = two.length();
         int left = 0;
-
-        for (int right = 0; right < str.length(); right++) {
-            window.add(str.charAt(right));
-
-            int val = freq.getOrDefault(str.charAt(right), 0);
-            freq.put(str.charAt(right), ++val);
-
-            // if the window size is more than `k`, remove characters from the left
-            while (window.size() > k) {
-                val = freq.get(str.charAt(left));
-                freq.put(str.charAt(left), --val);
-                // If the leftmost character's frequency becomes 0 after
-                // removing it in the window, remove it from the set as well
-                if (freq.get(str.charAt(left)) == 0) window.remove(str.charAt(left));
-                left++;        // reduce window size
+        for (int right = windowSize - 1; right < one.length(); right++) {
+            String window = one.substring(left, right + 1);
+            HashMap<Character, Integer> winMap = PablosLibrary.stringToMap(window);
+            if (winMap.equals(twoMap)) {
+                System.out.println("Anagram " + window + " present at index " + left);
             }
-
-            // update the maximum window size if necessary
-            if (end - begin < right - left) {
-                end = right;
-                begin = left;
-            }
+            left++;
         }
-
-        // return the longest substring found at `str[begin…end]`
-        return str.substring(begin, end + 1);
     }
 
 
     public static void main(String[] args) {
         Solution s = new Solution();
+        s.finder("XYYZXZYZXXYZ", "XYZ");
 
-        System.out.println(s.finder("abcbdbdbbdcdabd", 2).equals("bdbdbbd"));
-        System.out.println(s.finder("abcbdbdbbdcdabd", 5).equals("abcbdbdbbdcdabd"));
-        System.out.println(s.finder("abcbdbdbbdcdabd", 3).equals("bcbdbdbbdcd"));
-        System.out.println(s.finder("ggwwweqqq", 3).equals("wwweqqq"));
 
     }
 }
