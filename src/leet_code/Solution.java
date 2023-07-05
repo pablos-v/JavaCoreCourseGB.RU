@@ -1,45 +1,49 @@
 package leet_code;
 
-import java.util.HashMap;
-
 /**
- * Find all substrings of a string that contains all characters of another string.
- * In other words, find all substrings of the first string that are anagrams of the second string.
+ * Given a string, find the longest substring containing distinct characters.
+ * The problem differs from the problem of finding the longest subsequence with distinct characters.
+ * Unlike subsequences, substrings are required to occupy consecutive positions within
+ * the original string.
  * <p>
- * Please note that the problem specifically targets substrings that are contiguous
- * (i.e., occupy consecutive positions) and inherently maintains the order of elements.
+ * Input:  findlongestsubstring
+ * Output: The longest substring with all distinct characters is dlongest or ubstring
  * <p>
- * For example,
+ * Input:  longestsubstr
+ * Output: The longest substring with all distinct characters is longest
  * <p>
- * The first string is 'XYYZXZYZXXYZ'
- * The second string is 'XYZ'
+ * Input:  abbcdafeegh
+ * Output: The longest substring with all distinct characters is bcdafe
  * <p>
- * Anagram 'YZX' present at index 2
- * Anagram 'XZY' present at index 4
- * Anagram 'YZX' present at index 6
- * Anagram 'XYZ' present at index 9
+ * Input:  aaaaaa
+ * Output: The longest substring with all distinct characters is a
  */
 class Solution {
 
-    public void finder(String one, String two) {
-        HashMap<Character, Integer> twoMap = PablosLibrary.stringToMap(two);
-        int windowSize = two.length();
-        int left = 0;
-        for (int right = windowSize - 1; right < one.length(); right++) {
-            String window = one.substring(left, right + 1);
-            HashMap<Character, Integer> winMap = PablosLibrary.stringToMap(window);
-            if (winMap.equals(twoMap)) {
-                System.out.println("Anagram " + window + " present at index " + left);
+    public void findlongestsubstring(String str) {
+        String substring;
+        String res = "";
+
+        for (int right = 1, left = 0; right < str.length(); right++) {
+            substring = str.substring(left, right);
+            // окно подстроки растёт вправо, пока подстрока уникальна
+            if (substring.length() != PablosLibrary.stringToSet(substring).size()) {
+                // если не уникальна - результат сравнить и запомнить, левую границу сдвинуть
+                if (res.length() < str.substring(left, right - 1).length()) res = str.substring(left, right - 1);
+                left++;
             }
-            left++;
         }
+        System.out.println(res);
+
     }
 
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        s.finder("XYYZXZYZXXYZ", "XYZ");
-
+        s.findlongestsubstring("aaaaa");
+        s.findlongestsubstring("findlongestsubstring");
+        s.findlongestsubstring("longestsubstr");
+        s.findlongestsubstring("abbcdafeegh");
 
     }
 }
