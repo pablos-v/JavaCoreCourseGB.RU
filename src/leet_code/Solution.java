@@ -1,49 +1,55 @@
 package leet_code;
 
 /**
- * Given a string, find the longest substring containing distinct characters.
- * The problem differs from the problem of finding the longest subsequence with distinct characters.
- * Unlike subsequences, substrings are required to occupy consecutive positions within
- * the original string.
+ * Given a binary array, find the index of 0 to be replaced with 1 to get a maximum length sequence of continuous ones.
  * <p>
- * Input:  findlongestsubstring
- * Output: The longest substring with all distinct characters is dlongest or ubstring
- * <p>
- * Input:  longestsubstr
- * Output: The longest substring with all distinct characters is longest
- * <p>
- * Input:  abbcdafeegh
- * Output: The longest substring with all distinct characters is bcdafe
- * <p>
- * Input:  aaaaaa
- * Output: The longest substring with all distinct characters is a
+ * For example, consider array { 0, 0, 1, 0, 1, 1, 1, 0, 1, 1 }.
+ * The index to be replaced is 7 to get a continuous sequence of length 6 containing all 1’s.
  */
 class Solution {
 
-    public void findlongestsubstring(String str) {
-        String substring;
-        String res = "";
+    public int findIndex(int[] arr) {
+        int len, idx = 0, res = 0, lenPrevious = 0, left = 0;
+        boolean isPreviousZero = false;
 
-        for (int right = 1, left = 0; right < str.length(); right++) {
-            substring = str.substring(left, right);
-            // окно подстроки растёт вправо, пока подстрока уникальна
-            if (substring.length() != PablosLibrary.stringToSet(substring).size()) {
-                // если не уникальна - результат сравнить и запомнить, левую границу сдвинуть
-                if (res.length() < str.substring(left, right - 1).length()) res = str.substring(left, right - 1);
-                left++;
+        for (int right = 0; right < arr.length; right++) {
+            if (arr[right] == 0) {
+
+                if (isPreviousZero) {
+
+                    len = right - left;
+                    if (len > lenPrevious) {
+                        res = idx;
+                        lenPrevious = len;
+                    }
+
+                    left = right;
+                    isPreviousZero = false;
+
+                } else {
+                    isPreviousZero = true;
+                    left++;
+                }
+
+                idx = right;
+
+            } else {
+                isPreviousZero = false;
+            }
+
+            len = right - left + 1;
+            if (len > lenPrevious) {
+                res = idx;
+                lenPrevious = len;
             }
         }
-        System.out.println(res);
 
+        return res;
     }
-
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        s.findlongestsubstring("aaaaa");
-        s.findlongestsubstring("findlongestsubstring");
-        s.findlongestsubstring("longestsubstr");
-        s.findlongestsubstring("abbcdafeegh");
-
+        System.out.println(s.findIndex(new int[]{0, 0, 1, 0, 1, 1, 1, 0, 1, 1}));
+        System.out.println(s.findIndex(new int[]{1, 0, 1, 1, 0, 0, 0, 1, 1}));
     }
 }
