@@ -22,13 +22,15 @@ class Solution {
     static int ZERO = 0;
 
     public static void dnf(int[] arr) {
+        int c = 0;
         int fin = arr.length - 1;
         int start = 0;
         for (int i = 0; i <= fin; i++) {
-
+            System.out.printf("for %d%n", c++);
             if (arr[i] == TWO) {
                 int j = fin;
                 while (j > i) {
+            System.out.printf("while-2 %d%n", c++);
                     if (arr[j] != TWO) {
                         int tmp = arr[j];
                         arr[j] = TWO;
@@ -36,17 +38,19 @@ class Solution {
                         fin--;
                         break;
                     }
+                    fin--;
                     j--;
                 }
             }
             if (arr[i] == ZERO) {
                 int j = start;
                 while (j < i) {
+            System.out.printf("while-0 %d%n", c++);
                     if (arr[j] != ZERO) {
                         int tmp = arr[j];
                         arr[j] = ZERO;
                         arr[i] = tmp;
-                        start++;
+                        start = j + 1;
                         break;
                     }
                     j++;
@@ -57,7 +61,7 @@ class Solution {
 
     public static void main(String[] args) {
 //        Solution s = new Solution();
-        int[] arr = new int[]{2, 2, 0, 1, 2, 0};
+        int[] arr = new int[]{1, 2, 0, 1, 2, 1, 1, 2, 0, 1, 2, 1,1, 2, 0, 1, 2, 1, 1, 2, 0, 1, 2, 1};
         Solution.dnf(arr);
         System.out.println(Arrays.toString(arr));
     }
