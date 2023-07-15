@@ -3,41 +3,62 @@ package leet_code;
 import java.util.Arrays;
 
 /**
- * Given a sorted array, create a new array containing squares of all the numbers of the input array in the sorted order.
+ * Given an array containing 0s, 1s and 2s, sort the array in-place. You should treat numbers of the array as
+ * objects, hence, we can’t count 0s, 1s, and 2s to recreate the array.
+ * The flag of the Netherlands consists of three colors: red, white and blue; and since our input array also
+ * consists of three different numbers that is why it is called Dutch National Flag problem.
  * <p>
  * Example 1:
- * Input: [-2, -1, 0, 2, 3]
- * Output: [0, 1, 4, 4, 9]
+ * Input: [1, 0, 2, 1, 0]
+ * Output: [0 0 1 1 2]
  * <p>
  * Example 2:
- * Input: [-3, -1, 0, 1, 2]
- * Output: [0, 1, 1, 4, 9]
+ * Input: [2, 2, 0, 1, 2, 0]
+ * Output: [0 0 1 2 2 2 ]
  */
 class Solution {
 
-    public int[] squaredArray(int[] arr) {
-        int left = 0;
-        int right = arr.length - 1;
-        int[] res = new int[arr.length];
-        int i = arr.length - 1;
+    static int TWO = 2;
+    static int ZERO = 0;
 
-        while (left < right) {
-            int l = (int) Math.pow(arr[left], 2);
-            int r = (int) Math.pow(arr[right], 2);
-            if (l > r) {
-                res[i--] = l;
-                left++;
-            } else {
-                res[i--] = r;
-                right--;
+    public static void dnf(int[] arr) {
+        int fin = arr.length - 1;
+        int start = 0;
+        for (int i = 0; i <= fin; i++) {
+
+            if (arr[i] == TWO) {
+                int j = fin;
+                while (j > i) {
+                    if (arr[j] != TWO) {
+                        int tmp = arr[j];
+                        arr[j] = TWO;
+                        arr[i] = tmp;
+                        fin--;
+                        break;
+                    }
+                    j--;
+                }
+            }
+            if (arr[i] == ZERO) {
+                int j = start;
+                while (j < i) {
+                    if (arr[j] != ZERO) {
+                        int tmp = arr[j];
+                        arr[j] = ZERO;
+                        arr[i] = tmp;
+                        start++;
+                        break;
+                    }
+                    j++;
+                }
             }
         }
-        return res;
     }
 
     public static void main(String[] args) {
-        Solution s = new Solution();
-        int[] arr = new int[]{-7, -6, 0, 4, 5, 8, 9};
-        System.out.println(Arrays.toString(s.squaredArray(arr)));
+//        Solution s = new Solution();
+        int[] arr = new int[]{2, 2, 0, 1, 2, 0};
+        Solution.dnf(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
