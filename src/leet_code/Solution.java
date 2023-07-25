@@ -1,61 +1,60 @@
 package leet_code;
 
 /**
- * Given the head of a Singly LinkedList, write a method to return the middle node of the LinkedList.
- * <p>
- * If the total number of nodes in the LinkedList is even, return the second middle node.
+ * https://leetcode.com/problems/circular-array-loop/
  */
 class Solution {
-    public static class ListNode {
-        int val;
-        ListNode next;
+    public boolean circularArrayLoop(int[] nums) {
+        int turt, rabb, direction;
+        for (int i = 0; i < nums.length; i++) {
+            turt = i;
+            rabb = i;
+            if (nums[rabb] > 0) direction = 1; // up movement
+            else direction = 0; // down movement
 
-        ListNode() {
-        }
+            for (int j = i; j < nums.length; j++) {
 
-        ListNode(int val) {
-            this.val = val;
-        }
+                turt = move(nums, turt, 1);
+                if (turt == move(nums, turt, 1)) break; // self-cycled
+                System.out.print(turt + " ");
 
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        public void addL(int n) {
-            if (n < 1) return;
-            this.val = n;
-            this.next = new ListNode();
-            this.next.addL(n - 1);
-        }
-
-        @Override
-        public String toString() {
-            if (this.next == null) {
-                return this.val + " ";
+                if ((direction == 1 && nums[rabb] < 0) || (direction == 1 && nums[move(nums,rabb,1)] < 0)) break; // changed direction
+                if ((direction == 0 && nums[rabb] > 0) || (direction == 0 && nums[move(nums,rabb,1)] > 0)) break; // changed direction
+                rabb = move(nums, rabb, 2);
+                System.out.print(rabb + "|");
+                if (turt == rabb) return true;
             }
-            return this.val + " " + this.next;
         }
+        return false;
     }
 
-    public static ListNode middleNode(ListNode head) {
-        ListNode turt, rabb;
-        turt = head;
-        rabb = head;
-        while (true) {
-            if (rabb.next == null) return turt;
-            else if (rabb.next.next == null)             return turt.next;
-            turt = turt.next;
-            rabb = rabb.next.next;
+    public int move(int[] where, int idx, int howFar) {
+        for (int i = 0; i < howFar; i++) {
+            idx += where[idx];
+            if (idx >= where.length) {
+                while (idx >= where.length) {
+                    idx -= where.length;
+                }
+            } else {
+                while (idx < 0) {
+                    idx += where.length;
+                }
+            }
         }
+        return idx;
     }
-
 
     public static void main(String[] args) {
-        ListNode node = new ListNode();
-        node.addL(6);
-        System.out.println(node);
-        System.out.println(Solution.middleNode(node).val);
-
+        Solution s = new Solution();
+        int[] nums = {2, -1, 1, 2, 2};
+        int[] nums2 = {-1, -2, -3, -4, -5, 6};
+        int[] nums3 = {1, -1, 5, 1, 4};
+        int[] nums4 = {-1,-2,-3,-4,-5};
+        int[] nums5 = {1,1,1,1,1,1,1,1,1,-5};
+        System.out.println(" nums = " + s.circularArrayLoop(nums));
+        System.out.println(" nums2 = " + s.circularArrayLoop(nums2));
+        System.out.println(" nums3 = " + s.circularArrayLoop(nums3));
+        System.out.println(" nums4 = " + s.circularArrayLoop(nums4));
+        System.out.println(" nums5 = " + s.circularArrayLoop(nums5));
     }
 }
