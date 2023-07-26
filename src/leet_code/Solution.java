@@ -1,60 +1,52 @@
 package leet_code;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
- * https://leetcode.com/problems/circular-array-loop/
+ * Given an array of intervals where intervals[i] = [starti, endi], merge all
+ * overlapping intervals, and return an array of the non-overlapping intervals
+ * that cover all the intervals in the input.
+ * Example 1:
+ * <p>
+ * Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+ * Output: [[1,6],[8,10],[15,18]]
+ * Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
+ * Example 2:
+ * <p>
+ * Input: intervals = [[1,4],[4,5]]
+ * Output: [[1,5]]
+ * Explanation: Intervals [1,4] and [4,5] are considered overlapping.
  */
 class Solution {
-    public boolean circularArrayLoop(int[] nums) {
-        int turt, rabb, direction;
-        for (int i = 0; i < nums.length; i++) {
-            turt = i;
-            rabb = i;
-            if (nums[rabb] > 0) direction = 1; // up movement
-            else direction = 0; // down movement
+    public int[][] merge(int[][] intervals) {
 
-            for (int j = i; j < nums.length; j++) {
+        Arrays.sort(intervals, Comparator.comparingInt(start -> start[0]));
 
-                turt = move(nums, turt, 1);
-                if (turt == move(nums, turt, 1)) break; // self-cycled
-                System.out.print(turt + " ");
+        ArrayList<int[]> res = new ArrayList<>();
+        int start = intervals[0][0];
+        int end = intervals[0][1];
 
-                if ((direction == 1 && nums[rabb] < 0) || (direction == 1 && nums[move(nums,rabb,1)] < 0)) break; // changed direction
-                if ((direction == 0 && nums[rabb] > 0) || (direction == 0 && nums[move(nums,rabb,1)] > 0)) break; // changed direction
-                rabb = move(nums, rabb, 2);
-                System.out.print(rabb + "|");
-                if (turt == rabb) return true;
+        for (int i = 1; i < intervals.length; i++) {
+            int s = intervals[i][0];
+            int e = intervals[i][1];
+            if (end >= s){
+                end = Math.max(end, e);
+            }
+            else {
+                res.add(new int[]{start, end});
+                start = s;
+                end = e;
             }
         }
-        return false;
-    }
-
-    public int move(int[] where, int idx, int howFar) {
-        for (int i = 0; i < howFar; i++) {
-            idx += where[idx];
-            if (idx >= where.length) {
-                while (idx >= where.length) {
-                    idx -= where.length;
-                }
-            } else {
-                while (idx < 0) {
-                    idx += where.length;
-                }
-            }
-        }
-        return idx;
+        res.add(new int[]{start, end});
+        return res.toArray(new int[0][]);
     }
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        int[] nums = {2, -1, 1, 2, 2};
-        int[] nums2 = {-1, -2, -3, -4, -5, 6};
-        int[] nums3 = {1, -1, 5, 1, 4};
-        int[] nums4 = {-1,-2,-3,-4,-5};
-        int[] nums5 = {1,1,1,1,1,1,1,1,1,-5};
-        System.out.println(" nums = " + s.circularArrayLoop(nums));
-        System.out.println(" nums2 = " + s.circularArrayLoop(nums2));
-        System.out.println(" nums3 = " + s.circularArrayLoop(nums3));
-        System.out.println(" nums4 = " + s.circularArrayLoop(nums4));
-        System.out.println(" nums5 = " + s.circularArrayLoop(nums5));
+        int[][] intervals = {{1, 3}, {8, 10},{2, 6},  {15, 18}};
+        System.out.println(Arrays.deepToString(s.merge(intervals)));
     }
 }
