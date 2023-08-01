@@ -1,8 +1,9 @@
 package spring_intro;
 
 public class Test1 {
+
     public static void main(String[] args) {
-        Dog dog = new Dog();
-        dog.voice();
+        Pet pet = new Cat();
+        pet.voice();
     }
 }

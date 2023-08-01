@@ -1,7 +1,8 @@
 package spring_intro;
 
-public class Dog {
+public class Dog implements Pet{
+    @Override
     public void voice(){
-        System.out.println("Wow-wow");
+        System.out.println("Bow-wow");
     }
 }
