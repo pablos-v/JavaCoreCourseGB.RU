@@ -1,9 +1,22 @@
 package spring_intro;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component("personBean")
 public class Person {
+    @Autowired
+    @Qualifier("dogBean")
     private Pet pet;
     private String name;
+
     private int age;
+//@Autowired
+//    public Person(Pet pet) {
+//        System.out.println("Pers");
+//        this.pet = pet;
+//    }
 
     public String getName() {
         return name;
@@ -20,17 +33,12 @@ public class Person {
     public void setAge(int age) {
         this.age = age;
     }
-//    public Person(Pet pet) {
-////        this.pet = pet;
-//
-//    }
-
     public void setPet(Pet pet) {
         this.pet = pet;
     }
 
-    public void callPet(){
-        System.out.println("Hello!");
+    public void callPet() {
+        System.out.println("- Hello, " + pet.getClass().getSimpleName().toUpperCase() + "!");
         pet.voice();
     }
 }
