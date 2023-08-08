@@ -1,11 +1,9 @@
 package spring_intro;
 
-import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component("dogBean")
+//@Component("dogBean")
 public class Dog implements Pet{
     public Dog(){
         System.out.println("Dog");

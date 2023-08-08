@@ -1,26 +1,22 @@
 package spring_intro;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
-@Component("personBean")
-@Scope("prototype")
+//@Component("personBean")
+
 public class Person {
-    @Autowired
-    @Qualifier("dogBean")
-    private Pet pet;
+//    @Autowired
+//    @Qualifier("dogBean")
+    public Pet pet;
     @Value("${person.name}")
     private String name;
     @Value("${person.age}")
     private int age;
 //@Autowired
-//    public Person(Pet pet) {
-//        System.out.println("Pers");
-//        this.pet = pet;
-//    }
+    public Person(Pet pet) {
+        System.out.println("Pers");
+        this.pet = pet;
+    }
 
     public String getName() {
         return name;
