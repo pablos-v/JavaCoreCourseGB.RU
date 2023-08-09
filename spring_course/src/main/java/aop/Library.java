@@ -4,8 +4,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Library {
-    public void getBook(Book bk){
-        System.out.print(" Take book ");
-        System.out.println(bk.getName());
+    public void getBook(){
+        System.out.println(" Take book ");
+        System.out.println("-----------------");
+    }public void getMag(){
+        System.out.println(" Take mag ");
+        System.out.println("-----------------");
+    }public void putBook(String person, Book book){
+        System.out.println(" Put book ");
+        System.out.println("-----------------");
+    }public void putMag(){
+        System.out.println(" Put mag ");
+        System.out.println("-----------------");
     }
+
 }

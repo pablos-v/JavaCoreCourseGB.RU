@@ -8,7 +8,9 @@ public class Test1 {
 
         Library lib = spring.getBean("library", Library.class);
         Book book = spring.getBean("book", Book.class);
-        lib.getBook(book);
+//        lib.getBook();
+        lib.putMag();
+        lib.putBook("vasya", book);
 
 
         spring.close();
