@@ -9,6 +9,11 @@ public class Test2 {
         University university = context.getBean("university", University.class);
 
         System.out.println(university.getStudents());
+//        try {
+//            System.out.println(university.getStudents());
+//        }catch (Exception ignored){
+//
+//        }
         context.close();
     }
 

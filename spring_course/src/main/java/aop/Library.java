@@ -17,5 +17,10 @@ public class Library {
         System.out.println(" Put mag ");
         System.out.println("-----------------");
     }
+    public String returnBook(){
+        int d = 1/0;
+        System.out.println(" returnBook() working ");
+        return "Bible";
+    }
 
 }
