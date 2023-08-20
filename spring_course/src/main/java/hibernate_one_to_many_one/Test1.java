@@ -18,14 +18,8 @@ public class Test1 {
 
             session.beginTransaction(); // начинаем транзакцию
 
-            Employee first = new Employee("Pavel", "Kuzmin", 200_000);
-            Employee second = new Employee("Nona", "Kravez", 20_000);
-            Department dep = new Department("IT", 500, 500_000);
-
-            dep.addEmpToDepart(first);
-            dep.addEmpToDepart(second);
-
-            session.persist(dep);
+            Department first = session.get(Department.class, 2);
+            session.remove(first);
 
             session.getTransaction().commit(); // коммит успешной операции (даже если SELECT), транзакция закрыта
         }

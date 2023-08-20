@@ -15,19 +15,6 @@ public class Employee {
     private String surname;
     @Column(name = "salary")
     private int salary;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE}) // обозначается связь много-к-одному и
-    // и каскадность - то есть операции будут выполняться каскадно не только на этой сущности, но и
-    // и на связанных с ней тоже
-    @JoinColumn(name = "department_id") // это FOREIGN KEY
-    private Department department; // поле с экземпляром класса, на который ведёт FOREIGN KEY
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
 
     public Employee() {
     }
@@ -38,16 +25,6 @@ public class Employee {
         this.salary = salary;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", salary=" + salary +
-                ", department=" + department +
-                '}';
-    }
 
     public int getId() {
         return id;

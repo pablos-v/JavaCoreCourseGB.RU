@@ -34,8 +34,8 @@ public class Department {
         return name;
     }
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE}
-            , mappedBy = "department") // связь через поле department в классе Employee
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinColumn(name = "department_id") // связь через поле department_id в классе Employee
     private List<Employee> emps;
 
     public Department() {
@@ -51,8 +51,7 @@ public class Department {
         if (emps == null) {
             emps = new ArrayList<>();
         }
-        emps.add(employee); // для двусторонней связи, добавить сотрудника в список
-        employee.setDepartment(this); // и назначить департамент сотруднику
+        emps.add(employee);
     }
 
     public int getId() {
