@@ -1,4 +1,4 @@
-package hibernate_2.entity;
+package hibernate_one_to_many.entity;
 
 import jakarta.persistence.*;
 
@@ -18,6 +18,18 @@ public class Details {
 
     @Column(name = "email")
     private String email;
+
+    public Employee getEmp() {
+        return emp;
+    }
+
+    public void setEmp(Employee emp) {
+        this.emp = emp;
+    }
+
+    @OneToOne(mappedBy = "employeeDetails" // говорим, что у объекта Employee уже есть связь по полю employeeDetails
+            , cascade = CascadeType.ALL)
+    private Employee emp; // для двусвязного отношения таблиц БД
 
     public Details() {
     }
