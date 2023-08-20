@@ -1,4 +1,4 @@
-package hibernate.entity;
+package hibernate_2.entity;
 
 import jakarta.persistence.*;
 
@@ -17,8 +17,21 @@ public class Employee {
     private String department;
     @Column(name = "salary")
     private int salary;
+    @OneToOne(cascade = CascadeType.ALL) // обозначается связь один-к-одному и
+    // и каскадность - то есть операции будут выполняться каскадно не только на этой сущности, но и
+    // и на связанных с ней тоже
+    @JoinColumn(name = "details_id") // это FOREIGN KEY
+    private Details employeeDetails; // поле с экземпляром класса, на который ведёт FOREIGN KEY
 
     public Employee() {
+    }
+
+    public Details getEmployeeDetails() {
+        return employeeDetails;
+    }
+
+    public void setEmployeeDetails(Details employeeDetails) {
+        this.employeeDetails = employeeDetails;
     }
 
     public Employee(String name, String surname, String department, int salary) {
