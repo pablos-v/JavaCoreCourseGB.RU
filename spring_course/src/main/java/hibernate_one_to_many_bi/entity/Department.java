@@ -34,8 +34,9 @@ public class Department {
         return name;
     }
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE}
-            , mappedBy = "department") // связь через поле department в классе Employee
+    @OneToMany(cascade = CascadeType.ALL
+            , mappedBy = "department"
+            , fetch = FetchType.EAGER) // связь через поле department в классе Employee
     private List<Employee> emps;
 
     public Department() {
