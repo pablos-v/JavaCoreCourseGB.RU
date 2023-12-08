@@ -9,6 +9,9 @@ import java.nio.file.Path;
  */
 
 public class Pers implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String name;
     private String surname;
     private transient String password;
@@ -28,19 +31,4 @@ public class Pers implements Serializable {
                 '}';
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Pers pers = new Pers("Ivan", "Loginov", "codeWord!!!");
-
-        Files.deleteIfExists(Path.of("hw3_Externals.out"));
-
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("hw3_Externals.out"))) {
-            out.writeObject(pers);
-        }
-
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("hw3_Externals.out"))) {
-            pers = (Pers) in.readObject();
-        }
-
-        System.out.println(pers);
-    }
 }
