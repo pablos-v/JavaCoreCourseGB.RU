@@ -1,6 +1,8 @@
 package hw3;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.UUID;
 
 public class Homework {
@@ -30,7 +32,13 @@ public class Homework {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
             object = in.readObject();
         } catch (ClassNotFoundException | IOException e) {
-            System.out.println("Huston, we have a problem! It`s " + e);
+            System.err.println("Huston, we have a problem! It`s " + e);
+        }
+
+        try {
+            Files.delete(Path.of(path));
+        } catch (IOException e) {
+            System.err.println("Huston, we have a problem! It`s " + e);
         }
         return object;
     }
