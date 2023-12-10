@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository // аннотация DAO
 public class EmployeeDAOImpl implements EmployeeDAO {
-    @Autowired //мы уже описали этот БИН в конфиге XML
+    @Autowired //мы уже описали этот БИН в классе MyConfig
     private SessionFactory sessionFactory;
 
     @Override
@@ -20,8 +20,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         Query<Employee> query = session.createQuery("from Employee"
                 , Employee.class); // создаём запрос
         return query.getResultList(); // пуляеем запрос и сразу отдаём
-        // a можно и одной строкой:
-        // return sessionFactory.getCurrentSession().createQuery("from Employee", Employee.class).getResultList();
     }
 
     @Override
