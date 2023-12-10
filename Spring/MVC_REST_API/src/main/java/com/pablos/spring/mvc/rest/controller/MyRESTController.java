@@ -14,16 +14,17 @@ import java.util.List;
 @RestController // не просто контроллер, а именно РЕСТ
 @RequestMapping("/api") // это будет корень для всех маппингов этого контроллера
 public class MyRESTController {
-    @Autowired
+    @Autowired // сервис стоит между DAO и фронтКонтроллером, для гибкости
     private EmployeeService employeeService;
 
-    @GetMapping("/employees")
+    @GetMapping(value = {"/employees", "/employees/"}) // мултимэппинг
     public List<Employee> showAllEmps() {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("/employees/{id}")
-    public Employee showOneEmp(@PathVariable int id) throws NoSuchFieldException {
+    @GetMapping("/employees/{i}") //Аннотация @PathVariable используется для
+    //    получения значения переменной из адреса запроса
+    public Employee showOneEmp(@PathVariable("i") int id) throws NoSuchFieldException {
         Employee emp = employeeService.getEmployee(id);
         if (emp == null) {
             // если ID будет int, но такого объекта не будет в БД, то отдаёт null,
@@ -33,15 +34,6 @@ public class MyRESTController {
         return emp;
     }
 
-    @ExceptionHandler // обработает кривые запросы с невалидным ID, типа /api/employees/1000
-    public ResponseEntity<EmplIncorrectData> handleException(NoSuchFieldException exception){
-        return new ResponseEntity<>(new EmplIncorrectData(exception.getMessage()), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler // обработает все кривые запросы типа /api/employees/fr
-    public ResponseEntity<EmplIncorrectData> handleException(Exception exception){
-        return new ResponseEntity<>(new EmplIncorrectData(exception.getMessage()), HttpStatus.BAD_REQUEST);
-    }
 
 //    @PostMapping("/employees")
 //    public void postEmployee(Employee emp){
