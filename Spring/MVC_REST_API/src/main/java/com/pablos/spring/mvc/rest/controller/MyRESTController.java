@@ -1,12 +1,9 @@
 package com.pablos.spring.mvc.rest.controller;
 
 import com.pablos.spring.mvc.rest.entity.Employee;
-import com.pablos.spring.mvc.rest.exception_handling.EmplIncorrectData;
+import com.pablos.spring.mvc.rest.exception_handling.Informer;
 import com.pablos.spring.mvc.rest.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,19 +31,19 @@ public class MyRESTController {
         return emp;
     }
 
+    @PostMapping("/employees") // @RequestBody связывает тело HTTP POST-запроса с параметром
+    public Employee postEmployee(@RequestBody Employee emp) {
+        return employeeService.saveEmployee(emp);
+    }
 
-//    @PostMapping("/employees")
-//    public void postEmployee(Employee emp){
-//        employeeService.saveEmployee(emp);
-//    }
-//
-//    @PutMapping("/employees")
-//    public void putEmployee(Employee emp){
-//        employeeService.saveEmployee(emp);
-//    }
-//
-//    @DeleteMapping("/employees/{id}")
-//    public void deleteEmployee(@PathVariable int id){
-//        employeeService.delEmployee(employeeService.getEmployee(id));
-//    }
+    @PutMapping("/employees")
+    public Employee putEmployee(@RequestBody Employee emp) {
+        return employeeService.saveEmployee(emp);
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public Informer deleteEmployee(@PathVariable int id) {
+        employeeService.delEmployee(employeeService.getEmployee(id));
+        return new Informer ("Deleted Employee with ID = " + id);
+    }
 }

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler // обработает кривые запросы с невалидным ID, типа /api/employees/1000
-    public ResponseEntity<EmplIncorrectData> handleException(NoSuchFieldException exception) {
-        return new ResponseEntity<>(new EmplIncorrectData(exception.getMessage()), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Informer> handleException(NoSuchFieldException exception) {
+        return new ResponseEntity<>(new Informer(exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler // обработает все кривые запросы типа /api/employees/fr
-    public ResponseEntity<EmplIncorrectData> handleException(Exception exception) {
-        return new ResponseEntity<>(new EmplIncorrectData(exception.getMessage()), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Informer> handleException(Exception exception) {
+        return new ResponseEntity<>(new Informer(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
 }

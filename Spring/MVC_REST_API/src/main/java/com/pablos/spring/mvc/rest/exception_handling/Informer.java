@@ -2,13 +2,13 @@ package com.pablos.spring.mvc.rest.exception_handling;
 
 // этот класс нужен для преобразования сообщения от эксепшена в объект,
 // который потом будет выдан в виде JSON
-public class EmplIncorrectData {
+public class Informer {
     private String info;
 
-    public EmplIncorrectData() {
+    public Informer() {
     }
 
-    public EmplIncorrectData(String info) {
+    public Informer(String info) {
         this.info = info;
     }
 
