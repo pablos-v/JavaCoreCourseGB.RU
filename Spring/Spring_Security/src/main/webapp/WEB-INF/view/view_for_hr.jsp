@@ -7,7 +7,5 @@
 </head>
 <body>
     Info about Salaries
-
-
 </body>
 </html>

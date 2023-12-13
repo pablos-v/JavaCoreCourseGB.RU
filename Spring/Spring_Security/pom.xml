@@ -49,6 +49,29 @@
       <version>6.2.0</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>8.1.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.mchange/c3p0
+    Это коннекшен-пул, используемый гибернейтом вместо JDBC, типа так быстрее -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.5</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+    <!-- для управления видимостью форм и кнопок jsp страниц -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>6.2.0</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>Spring_Security</finalName>

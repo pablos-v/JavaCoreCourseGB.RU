@@ -1,5 +1,7 @@
 package com.pablos.spring.security.configuration;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -10,12 +12,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.sql.DataSource;
+import java.beans.PropertyVetoException;
 
 @Configuration
 @EnableWebSecurity
 public class MySecurityConfig{
+    @Autowired
+    private DataSource dataSource;
+
+    @Bean // вариант с использованием БД
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
     // банальный вариант аутентификации, без кодировки и БД, для демонстрации
 //    @Bean
 //    public InMemoryUserDetailsManager userDetailsService() {
@@ -38,37 +53,38 @@ public class MySecurityConfig{
 //    }
 
     // вариант аутентификации с кодировкой пароля в памяти
-    @Bean
-    public BCryptPasswordEncoder encoder(){return new BCryptPasswordEncoder();}
+//    @Bean
+//    public BCryptPasswordEncoder encoder(){return new BCryptPasswordEncoder();}
+//
+//    @Bean
+//    public UserDetailsService userDetailsService(BCryptPasswordEncoder encoder){
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(User.withUsername("pablos")
+//                .password(encoder.encode("pablos"))
+//                .roles("EMPLOYEE")
+//                .build());
+//        manager.createUser(User.withUsername("ivan")
+//                .password(encoder.encode("ivan"))
+//                .roles("HR")
+//                .build());
+//        manager.createUser(User.withUsername("sveta")
+//                .password(encoder.encode("sveta"))
+//                .roles("MANAGER", "HR")
+//                .build());
+//        return manager;
+//    }
+//
+//    // авторизация по ролям
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http.authorizeHttpRequests((user) -> user
+//                .requestMatchers(new AntPathRequestMatcher("/")).hasAnyRole("HR", "MANAGER", "IT", "EMPLOYEE")
+//                // /manager_info/** сама папка и всё что вложено в папку /manager_info
+//                .requestMatchers(new AntPathRequestMatcher("/manager_info/**")).hasRole("MANAGER")
+//                .requestMatchers(new AntPathRequestMatcher("/hr_info/**")).hasRole("HR")
+//                .anyRequest().authenticated())
+//            .formLogin(Customizer.withDefaults());
+//        return http.build();
+//    }
 
-    @Bean
-    public UserDetailsService userDetailsService(BCryptPasswordEncoder encoder){
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("pablos")
-                .password(encoder.encode("pablos"))
-                .roles("EMPLOYEE")
-                .build());
-        manager.createUser(User.withUsername("ivan")
-                .password(encoder.encode("ivan"))
-                .roles("HR")
-                .build());
-        manager.createUser(User.withUsername("sveta")
-                .password(encoder.encode("sveta"))
-                .roles("MANAGER", "HR")
-                .build());
-        return manager;
     }
-
-    // авторизация по ролям
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((user) -> user
-                .requestMatchers(new AntPathRequestMatcher("/")).hasAnyRole("HR", "MANAGER", "IT", "EMPLOYEE")
-                // /manager_info/** сама папка и всё что вложено в папку /manager_info
-                .requestMatchers(new AntPathRequestMatcher("/manager_info/**")).hasRole("MANAGER")
-                .requestMatchers(new AntPathRequestMatcher("/hr_info/**")).hasRole("HR")
-                .anyRequest().authenticated())
-            .formLogin(Customizer.withDefaults());
-        return http.build();
-    }
-}
