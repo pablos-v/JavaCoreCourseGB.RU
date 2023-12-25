@@ -30,6 +30,15 @@ public class Server {
                     try (Scanner input = wrapper.getInput(); PrintWriter output = wrapper.getOutput()) {
                         output.println("Подключение успешно. Список всех клиентов: " + clients);
 
+                        // достаём до флага админа
+                        String className = client.getClass().getSimpleName();
+                        Class<?> clazz = Class.forName(className);
+                        boolean isAdmin = (boolean) clazz.getDeclaredField("isAdmin").get(null);
+
+                        if(isAdmin){
+                            tellEveryOne("Админ ф чяте, фсем баяца!");
+                        }
+
                         while (true) {
                             String clientInput = input.nextLine();
                             if (Objects.equals("q", clientInput)) {
@@ -43,10 +52,23 @@ public class Server {
                                 long destinationId = Long.parseLong(clientInput.substring(1, 2));
                                 SocketWrapper destination = clients.get(destinationId);
                                 destination.getOutput().println(clientInput.substring(2));
-                            }else {
+                            } else if (clientInput.equals("clients")) {
+                                output.println("Список всех клиентов: " + clients);
+                            } else if (clientInput.startsWith("kick") && isAdmin) {
+                                long looser = Long.parseLong(clientInput.substring(5, 6));
+                                clients.remove(looser);
+                                tellEveryOne("Клиент с портом " + client.getPort() + " кикнут Админом\n"
+                                        + "Список всех клиентов: " + clients);
+                            } else {
                                 tellEveryOne(clientInput);
                             }
                         }
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    } catch (NoSuchFieldException e) {
+                        throw new RuntimeException(e);
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
                     }
                 }).start();
             }

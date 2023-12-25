@@ -1,19 +1,17 @@
 package hw5;
 
-import lombok.Getter;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Client {
+public class AdminClient {
 
-    private static boolean isAdmin = false;
+    private static boolean isAdmin = true;
 
     public static void main(String[] args) throws IOException {
-        final Socket client = new Socket("localhost", hw5.Server.PORT);
+        final Socket client = new Socket("localhost", Server.PORT);
         // чтение
         new Thread(() -> {
             try (Scanner input = new Scanner(client.getInputStream())) {
@@ -22,6 +20,7 @@ public class Client {
                 }
             } catch (Exception e) {
                 System.out.println("Отключился");
+                ;
             }
         }).start();
 
