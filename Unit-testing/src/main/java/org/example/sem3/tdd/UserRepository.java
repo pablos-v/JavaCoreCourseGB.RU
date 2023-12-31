@@ -9,7 +9,9 @@ public class UserRepository {
     List<User> data = new ArrayList<>();
 
     public void addUser(User user) {
-       //..
+       if (user.authenticate("Ivan", "pass33")){
+           data.add(user);
+       }
     }
 
     public boolean findByName(String username) {

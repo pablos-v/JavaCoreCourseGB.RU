@@ -1,5 +1,10 @@
 package org.example.sem3.tdd;
 
+import lombok.Data;
+
+import java.util.Objects;
+
+@Data
 public class User {
 
     String name;
@@ -13,9 +18,14 @@ public class User {
 
     }
 
+    public User() {
+
+    }
+
     //3.6.
     public boolean authenticate(String name, String password) {
-        return false;
+
+        return Objects.equals(name, this.name) && Objects.equals(password, this.password);
     }
 
 }

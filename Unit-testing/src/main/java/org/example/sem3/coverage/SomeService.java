@@ -44,7 +44,7 @@ public class SomeService {
      * то оно не учитывается в сумме. Так, например, если b равно 13, то считается сумма только a и c.
      */
     public int sumNot13(int a, int b, int c) {
-        return Arrays.stream(new int[]{a,b,c}).filter((it)->it!=13).sum();
+        return Arrays.stream(new int[]{a, b, c}).filter((it) -> it != 13).sum();
     }
 
 }
