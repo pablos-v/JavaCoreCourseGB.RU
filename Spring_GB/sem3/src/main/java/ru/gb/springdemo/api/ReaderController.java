@@ -2,10 +2,12 @@ package ru.gb.springdemo.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.springdemo.model.Reader;
 import ru.gb.springdemo.service.ReaderService;
 
+@RestController
 public class ReaderController {
     private ReaderService service;
 
