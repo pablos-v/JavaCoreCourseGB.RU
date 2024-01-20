@@ -1,5 +1,6 @@
 package ru.gb.springdemo.service;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gb.springdemo.api.IssueRequest;
@@ -21,6 +22,7 @@ public class IssuerService {
     // спринг это все заинжектит
     private final BookRepository bookRepository;
     private final ReaderRepository readerRepository;
+    @Getter
     private final IssueRepository issueRepository;
 
     public Issue issue(IssueRequest request) {
@@ -40,9 +42,16 @@ public class IssuerService {
 
     public String getInfoById(long id) {
         Issue issue = issueRepository.getByID(id);
-        Reader reader = readerRepository.getById(issue.getReaderId());
-        Book book = bookRepository.getBookById(issue.getBookId());
+        Reader reader = getReaderByIssue(issue);
+        Book book = getBookByIssue(issue);
         return String.format("Книга %s выдана %s пользователю %s", book, issue.getTimestamp().toString(), reader);
     }
 
+     public Book getBookByIssue(Issue issue){
+        return bookRepository.getBookById(issue.getBookId());
+    }
+
+    public Reader getReaderByIssue(Issue issue){
+        return readerRepository.getById(issue.getReaderId());
+    }
 }

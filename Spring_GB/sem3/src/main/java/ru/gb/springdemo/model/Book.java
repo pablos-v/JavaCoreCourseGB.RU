@@ -11,7 +11,6 @@ public class Book {
 
   private final long id;
   private final String name;
-
   public Book(String name) {
     this(sequence++, name);
   }

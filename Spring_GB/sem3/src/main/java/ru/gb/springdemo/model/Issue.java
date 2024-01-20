@@ -28,5 +28,4 @@ public class Issue {
     this.readerId = readerId;
     this.timestamp = LocalDateTime.now();
   }
-
 }

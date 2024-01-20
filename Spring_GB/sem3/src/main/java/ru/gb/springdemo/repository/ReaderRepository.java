@@ -40,4 +40,8 @@ public class ReaderRepository {
         readers.add(reader);
         return reader;
     }
+
+    public List<Reader> getAll() {
+        return readers;
+    }
 }

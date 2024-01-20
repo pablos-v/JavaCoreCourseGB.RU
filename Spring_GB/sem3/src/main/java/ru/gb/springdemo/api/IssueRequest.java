@@ -1,11 +1,15 @@
 package ru.gb.springdemo.api;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Запрос на выдачу
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class IssueRequest {
 
   /**

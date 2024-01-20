@@ -1,6 +1,7 @@
 package ru.gb.springdemo.repository;
 
 import lombok.Data;
+import lombok.Getter;
 import org.springframework.stereotype.Repository;
 import ru.gb.springdemo.model.Issue;
 
@@ -10,7 +11,7 @@ import java.util.Objects;
 
 @Repository
 public class IssueRepository {
-
+    @Getter
     private final List<Issue> issues;
 
     public IssueRepository() {
@@ -31,5 +32,9 @@ public class IssueRepository {
     public List<Issue> getIssuesByRader(long id) {
         return issues.stream().filter(it -> Objects.equals(it.getReaderId(), id))
                 .toList();
+    }
+
+    public List<Issue> getAll() {
+        return issues;
     }
 }
