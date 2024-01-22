@@ -2,6 +2,9 @@ package org.example;
 
 public class ResultPrinter {
 
+    private ResultPrinter() {
+    }
+
     public static void print(int n) {
         System.out.println(countResult(n));
     }

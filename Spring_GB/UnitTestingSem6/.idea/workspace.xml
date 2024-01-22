@@ -4,31 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c24f372a-7173-467b-a572-df4776db39b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/CoverUsage.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/AverageCounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ListGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ResultPrinter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/AverageCounterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/ListGeneratorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/ResultPrinterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/org/example/App.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/org/example/AverageCounter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/org/example/ListGenerator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/org/example/AppTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/org/example/ListGeneratorTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Unit-testing/.idea/CoverUsage.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Unit-testing/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sem3/src/main/java/ru/gb/springdemo/demo/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sem3/src/main/java/ru/gb/springdemo/demo/DatabaseConnector.java" afterDir="false" />
+    <list default="true" id="c24f372a-7173-467b-a572-df4776db39b0" name="Changes" comment="Unit Testing hw6 ready">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/AverageCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/AverageCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ResultPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ResultPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/AverageCounterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/AverageCounterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/AverageCounter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/AverageCounter.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,20 +37,20 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -78,7 +59,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in UnitTestingSem6">
+  <component name="RunManager" selected="JUnit.AverageCounterTest.findAverage">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.App" />
       <module name="UnitTestingSem6" />
@@ -116,14 +97,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AverageCounterTest and 2 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AverageCounterTest.findAverage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UnitTestingSem6" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="org.example.AverageCounterTest" />
-        <pattern testClass="org.example.ListGeneratorTest" />
-        <pattern testClass="org.example.ResultPrinterTest" />
-      </patterns>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.AverageCounterTest" />
+      <option name="METHOD_NAME" value="findAverage" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -145,11 +130,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AverageCounterTest.findAverage" />
         <item itemvalue="JUnit.All in UnitTestingSem6" />
         <item itemvalue="JUnit.AppTest.main" />
         <item itemvalue="JUnit.ResultPrinterTest" />
         <item itemvalue="Application.App" />
-        <item itemvalue="JUnit.AverageCounterTest and 2 more" />
       </list>
     </recent_temporary>
   </component>
@@ -162,6 +147,14 @@
       <option name="presentableId" value="Default" />
       <updated>1705934413120</updated>
     </task>
+    <task id="LOCAL-00001" summary="Unit Testing hw6 ready">
+      <created>1705942315919</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705942315919</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,7 +168,12 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Unit Testing hw6 ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unit Testing hw6 ready" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/UnitTestingSem6$All_in_UnitTestingSem6.ic" NAME="All in UnitTestingSem6 Coverage Results" MODIFIED="1705943042362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/UnitTestingSem6$AverageCounterTest_and_2_more.ic" NAME="AverageCounterTest and 2 more Coverage Results" MODIFIED="1705940605755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
