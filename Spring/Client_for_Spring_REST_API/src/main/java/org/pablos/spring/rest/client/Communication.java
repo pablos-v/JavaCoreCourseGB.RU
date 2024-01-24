@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 /**
- * это класс для соединения клиента с сервером
+ * это класс для соединения клиента с сервером!
  */
 @Component
 public class Communication {
