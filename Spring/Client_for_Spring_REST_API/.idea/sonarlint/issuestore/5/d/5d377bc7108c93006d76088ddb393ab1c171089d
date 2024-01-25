@@ -1,0 +1,8 @@
+
+h	java:S116"NRename this field "URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿»Õáÿÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(¿»Õáÿÿÿÿÿ
+E	java:S106+"+Replace this use of System.out by a logger.(‰ƒæßûÿÿÿÿ
+@	java:S106."+Replace this use of System.out by a logger.(í›ãÉ
+E	java:S106/"+Replace this use of System.out by a logger.(®û®Þüÿÿÿÿ
+E	java:S1065"+Replace this use of System.err by a logger.(‰Ü«’üÿÿÿÿ

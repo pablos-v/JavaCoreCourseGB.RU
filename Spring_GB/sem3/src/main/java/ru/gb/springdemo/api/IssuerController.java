@@ -24,12 +24,7 @@ public class IssuerController {
 //  public void returnBook(long issueId) {
 //    // найти в репозитории выдачу и проставить ей returned_at
 //  }
-    @PostConstruct
-    public void emulateIssues() {
-        for (int i = 1; i <= 3; i++) {
-            service.issue(new IssueRequest(i, i));
-        }
-    }
+
 
     @PostMapping
     public ResponseEntity<Issue> issueBook(@RequestBody IssueRequest request) {

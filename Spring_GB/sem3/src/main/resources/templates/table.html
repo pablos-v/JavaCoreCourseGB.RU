@@ -16,7 +16,7 @@
         <th>Reader</th>
         <th>Take time</th>
     </tr>
-    <tr th:each="issue: ${issuerService.getIssueRepository().getIssues()}">
+    <tr th:each="issue: ${issuerService.getAllIssues()}">
         <td th:text="${issue.getId()}"></td>
         <td th:text="${issuerService.getBookByIssue(issue).getName()}"></td>
         <td th:text="${issuerService.getReaderByIssue(issue).getName()}"></td>

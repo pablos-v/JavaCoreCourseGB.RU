@@ -1,2 +1,14 @@
 application:
-  max-allowed-books: 1
+  max-allowed-books: 4
+spring:
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+#    url: jdbc:postgresql://localhost:5432/library
+#    username: admin
+#    password: book
+jpa:
+  hibernate:
+    ddl-auto: update
+    show-sql: true

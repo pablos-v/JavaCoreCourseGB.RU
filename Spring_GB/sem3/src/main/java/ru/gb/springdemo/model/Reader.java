@@ -1,26 +1,31 @@
 package ru.gb.springdemo.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.util.List;
-
+@Entity
 @Data
-@RequiredArgsConstructor
+@Table(name = "readers")
 public class Reader {
 
-    public static long sequence = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private final long id;
-    private final String name;
+    @Column(nullable = false, length = 100)
+    private String name;
+
     private int booksInHand;
 
     @Value("${application.max-allowed-books:1}")
-    private int limit;
+    private int bookLimit;
 
     public Reader(String name) {
-        this(sequence++, name);
+        this.name = name;
+    }
+
+    public Reader() {
     }
 
     public void incNumOfBooks() {
@@ -32,7 +37,7 @@ public class Reader {
     }
 
     public boolean hasOverlimit() {
-        return booksInHand > limit;
+        return booksInHand > bookLimit;
     }
 
 }

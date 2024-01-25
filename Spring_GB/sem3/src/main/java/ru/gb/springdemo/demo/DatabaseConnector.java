@@ -31,7 +31,6 @@ public class DatabaseConnector {
   @EventListener(ApplicationReadyEvent.class)
   public void init() {
     log.info("подключаемся к бд...");
-    Thread.sleep(1000);
     log.info("подключение к БД успешно");
 
     eventPublisher.publishEvent(new DatabaseConnectionSetupEvent(this));

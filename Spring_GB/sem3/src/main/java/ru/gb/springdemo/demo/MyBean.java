@@ -37,9 +37,4 @@ public class MyBean {
     log.info("property = {}", myProperty);
   }
 
-  @PreDestroy
-  public void preDestroy() {
-    log.info("preDestroy");
-  }
-
 }
