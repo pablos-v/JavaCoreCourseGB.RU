@@ -1,6 +1,5 @@
 package ru.gb.springdemo.service;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gb.springdemo.model.Book;
@@ -12,13 +11,6 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final NewBookRepository repository;
-
-//    @PostConstruct
-//    private void generateData() {
-//        addBook(new Book("война и мир"));
-//        addBook(new Book("метрвые души"));
-//        addBook(new Book("чистый код"));
-//    }
 
     @Autowired
     public BookServiceImpl(NewBookRepository repository) {

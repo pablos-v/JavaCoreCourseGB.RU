@@ -53,8 +53,8 @@ public class IssueServiceImpl implements IssuerService {
             throw new NoSuchElementException("Не найден читатель с идентификатором \"" + request.getReaderId() + "\"");
         }
         // можно проверить, что у читателя нет книг на руках (или его лимит не превышает в Х книг)
-        if (readerRepository.findById(request.getReaderId()).get().hasOverlimit()) throw new OverLimitException();
-        readerRepository.findById(request.getReaderId()).get().incNumOfBooks();
+        if (readerRepository.findById(request.getReaderId()).orElseThrow().hasOverlimit()) throw new OverLimitException();
+        readerRepository.findById(request.getReaderId()).orElseThrow().incNumOfBooks();
         Issue issue = new Issue(request.getBookId(), request.getReaderId());
         issueRepository.save(issue);
         return issue;
@@ -62,7 +62,7 @@ public class IssueServiceImpl implements IssuerService {
 
     @Override
     public String getInfoById(long id) {
-        Issue issue = issueRepository.findById(id).get();
+        Issue issue = issueRepository.findById(id).orElseThrow();
         Reader reader = getReaderByIssue(issue);
         Book book = getBookByIssue(issue);
         return String.format("Книга %s выдана %s пользователю %s", book, issue.getTimestamp().toString(), reader);
@@ -70,12 +70,12 @@ public class IssueServiceImpl implements IssuerService {
 
     @Override
     public Book getBookByIssue(Issue issue) {
-        return bookRepository.findById(issue.getBookId()).get();
+        return bookRepository.findById(issue.getBookId()).orElseThrow();
     }
 
     @Override
     public Reader getReaderByIssue(Issue issue) {
-        return readerRepository.findById(issue.getReaderId()).get();
+        return readerRepository.findById(issue.getReaderId()).orElseThrow();
     }
 
     @Override

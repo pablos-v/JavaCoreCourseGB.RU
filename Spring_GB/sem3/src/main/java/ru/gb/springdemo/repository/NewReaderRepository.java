@@ -1,9 +1,7 @@
 package ru.gb.springdemo.repository;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.gb.springdemo.model.Reader;
-
 import java.util.List;
 import java.util.Optional;
 

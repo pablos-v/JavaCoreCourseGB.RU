@@ -1,6 +1,5 @@
 package ru.gb.springdemo.repository;
 
-import lombok.Data;
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
 import ru.gb.springdemo.model.Issue;

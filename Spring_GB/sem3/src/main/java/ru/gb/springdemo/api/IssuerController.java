@@ -1,6 +1,5 @@
 package ru.gb.springdemo.api;
 
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +18,6 @@ public class IssuerController {
 
     @Autowired
     private IssuerService service;
-
-    //  @PutMapping
-//  public void returnBook(long issueId) {
-//    // найти в репозитории выдачу и проставить ей returned_at
-//  }
-
 
     @PostMapping
     public ResponseEntity<Issue> issueBook(@RequestBody IssueRequest request) {

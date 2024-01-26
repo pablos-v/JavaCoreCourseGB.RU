@@ -1,6 +1,5 @@
 package ru.gb.springdemo.service;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gb.springdemo.model.Reader;
@@ -11,13 +10,6 @@ import java.util.List;
 @Service
 public class ReaderServiceImpl implements ReaderService {
     private final NewReaderRepository repository;
-
-//    @PostConstruct
-//    private void generateData() {
-//        addReader(new Reader("Игорь"));
-//        addReader(new Reader("Вася"));
-//        addReader(new Reader("Слава"));
-//    }
 
     @Autowired
     public ReaderServiceImpl(NewReaderRepository repository) {
