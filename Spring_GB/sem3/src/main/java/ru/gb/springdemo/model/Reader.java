@@ -1,5 +1,6 @@
 package ru.gb.springdemo.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 @Entity
 @Data
 @Table(name = "readers")
+@Schema(name = "Читатель")
 public class Reader {
 
     @Id
@@ -14,11 +16,13 @@ public class Reader {
     private long id;
 
     @Column(nullable = false, length = 100)
+    @Schema(name = "Имя")
     private String name;
-
+    @Schema(name = "Количество книг на руках")
     private int booksInHand;
 
     @Value("${application.max-allowed-books:1}")
+    @Schema(name = "Лимит книг на руках")
     private int bookLimit;
 
     public Reader(String name) {
