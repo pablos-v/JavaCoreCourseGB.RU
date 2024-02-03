@@ -1,26 +1,25 @@
 server:
-  port: 8180
+  port: 8080
 application:
   max-allowed-books: 4
 spring:
   datasource:
-    url: jdbc:h2:mem:test
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: http://localhost:8080/realms/master
-#    driverClassName: org.postgresql.Driver
-#    url: jdbc:postgresql://localhost:5432/postgres
+
+#    url: jdbc:h2:mem:test
 #    username: sa
 #    password:
-jpa:
-  show-sql: true
-  hibernate:
-    ddl-auto: update
-#  properties:
-#    hibernate:
-#      dialect: org.hibernate.dialect.PostgreSQLDialect
+#    driver-class-name: org.h2.Driver
+
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: sa
+    password:
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
