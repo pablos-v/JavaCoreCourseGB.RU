@@ -11,12 +11,15 @@ import ru.gb.springdemo.service.ReaderService;
 @Controller
 public class MyController {
     public static final String MAIN_TAG = "mainTag";
-    @Autowired
-    BookService bookService;
-    @Autowired
-    ReaderService readerService;
-    @Autowired
-    IssuerService issuerService;
+    private final BookService bookService;
+    private final ReaderService readerService;
+    private final IssuerService issuerService;
+
+    public MyController(BookService bookService, ReaderService readerService, IssuerService issuerService) {
+        this.bookService = bookService;
+        this.readerService = readerService;
+        this.issuerService = issuerService;
+    }
 
     @GetMapping("/ui/books")
     public String veiwAllBooks(Model model) {
@@ -25,7 +28,7 @@ public class MyController {
         return "list";
     }
 
-    @GetMapping("/ui/reader")
+    @GetMapping("/ui/readers")
     public String veiwAllReaders(Model model) {
         model.addAttribute("items", readerService.getAllReaders());
         model.addAttribute(MAIN_TAG, "List of Readers");

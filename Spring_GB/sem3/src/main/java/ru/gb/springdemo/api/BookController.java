@@ -14,8 +14,11 @@ import java.util.List;
 @RestController
 @Tag(name = "BOOK") // название контроллера в /swagger-ui/index.html#/ можно одним тегом объединять разные контроллеры
 public class BookController {
-    @Autowired
-    private BookService service;
+    private final BookService service;
+
+    public BookController(BookService service) {
+        this.service = service;
+    }
 
     @GetMapping("/book/")
     @Operation(summary = "Список книг", description = "Отдаёт полный список всех книг")
