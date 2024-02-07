@@ -22,14 +22,14 @@ public class MyController {
     }
 
     @GetMapping("/ui/books")
-    public String veiwAllBooks(Model model) {
+    public String viewAllBooks(Model model) {
         model.addAttribute("items", bookService.getAllBooks());
         model.addAttribute(MAIN_TAG, "List of Books");
         return "list";
     }
 
     @GetMapping("/ui/readers")
-    public String veiwAllReaders(Model model) {
+    public String viewAllReaders(Model model) {
         model.addAttribute("items", readerService.getAllReaders());
         model.addAttribute(MAIN_TAG, "List of Readers");
         return "list";
