@@ -12,18 +12,19 @@ import ru.gb.springdemo.service.ReaderService;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/reader")
 @Tag(name = "READER")
 public class ReaderController {
     @Autowired
     private ReaderService service;
 
-    @GetMapping("/reader/")
+    @GetMapping
     @Operation(summary = "Список читателей", description = "Отдаёт полный список всех читателей")
     public ResponseEntity<List<Reader>> getAll() {
         return ResponseEntity.ok(service.getAllReaders());
     }
 
-    @GetMapping("/reader/{id}")
+    @GetMapping("/{id}")
     @Operation(summary = "Получить читателя", description = "Отдаёт читателя, которого находит по указанному ID")
     public ResponseEntity<Reader> getById(@PathVariable long id) {
         Reader reader = service.getReaderById(id);
@@ -31,7 +32,7 @@ public class ReaderController {
         else return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/reader/{id}")
+    @DeleteMapping("/{id}")
     @Operation(summary = "Удалить читателя", description = "Удаляет читателя, которого находит по указанному ID, и отдаёт его в ответе")
     public ResponseEntity<Reader> delByID(@PathVariable long id) {
         Reader reader = service.getReaderById(id);
@@ -39,7 +40,7 @@ public class ReaderController {
         else return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("/reader")
+    @PostMapping
     @Operation(summary = "Добавить читателя", description = "Добавляет читателя, переданного в теле запроса, и отдаёт его в ответе")
     public ResponseEntity<Reader> addReader(@RequestBody Reader reader) {
         return ResponseEntity.status(HttpStatus.OK).body(service.addReader(reader));

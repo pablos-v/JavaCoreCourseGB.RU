@@ -16,6 +16,8 @@ public interface IssuerService {
 
     Reader getReaderByIssue(Issue issue);
 
+    Issue deleteIssueById(long id);
+
     List<Issue> getAllIssues();
 
 }

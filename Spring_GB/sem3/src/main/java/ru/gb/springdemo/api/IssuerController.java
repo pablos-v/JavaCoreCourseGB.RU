@@ -9,13 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.springdemo.hw.OverLimitException;
 import ru.gb.springdemo.model.Issue;
+import ru.gb.springdemo.api.IssueRequest;
 import ru.gb.springdemo.service.IssuerService;
 
 import java.util.NoSuchElementException;
 
 @Slf4j
 @RestController
-@RequestMapping("/issue")
+@RequestMapping("/api/issue")
 @Tag(name = "ISSUE")
 public class IssuerController {
 
@@ -39,7 +40,7 @@ public class IssuerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(issue);
     }
 
-    @GetMapping("/issue/{id}")
+    @GetMapping("/{id}")
     @Operation(summary = "Получить описание выдачи", description = "Отдаёт описание выдачи книги, опираясь на переданный ID выдачи")
     public String getIssueDescription(@PathVariable long id) {
         return service.getInfoById(id);

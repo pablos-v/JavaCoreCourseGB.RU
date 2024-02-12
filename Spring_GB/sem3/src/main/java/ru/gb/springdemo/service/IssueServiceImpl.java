@@ -21,7 +21,7 @@ public class IssueServiceImpl implements IssuerService {
     NewIssueRepository issueRepository;
     NewBookRepository bookRepository;
 
-    @PostConstruct
+    //    @PostConstruct
     public void emulateIssues() {
         readerRepository.save(new Reader("Игорь"));
         readerRepository.save(new Reader("Вася"));
@@ -53,7 +53,8 @@ public class IssueServiceImpl implements IssuerService {
             throw new NoSuchElementException("Не найден читатель с идентификатором \"" + request.getReaderId() + "\"");
         }
         // можно проверить, что у читателя нет книг на руках (или его лимит не превышает в Х книг)
-        if (readerRepository.findById(request.getReaderId()).orElseThrow().hasOverlimit()) throw new OverLimitException();
+        if (readerRepository.findById(request.getReaderId()).orElseThrow().hasOverlimit())
+            throw new OverLimitException();
         readerRepository.findById(request.getReaderId()).orElseThrow().incNumOfBooks();
         Issue issue = new Issue(request.getBookId(), request.getReaderId());
         issueRepository.save(issue);
@@ -76,6 +77,13 @@ public class IssueServiceImpl implements IssuerService {
     @Override
     public Reader getReaderByIssue(Issue issue) {
         return readerRepository.findById(issue.getReaderId()).orElseThrow();
+    }
+
+    @Override
+    public Issue deleteIssueById(long id) {
+        Issue issue = issueRepository.findById(id).get();
+        issueRepository.deleteById(id);
+        return issue;
     }
 
     @Override
