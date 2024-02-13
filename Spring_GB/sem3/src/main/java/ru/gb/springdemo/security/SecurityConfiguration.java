@@ -18,12 +18,12 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .authorizeHttpRequests(configurer -> configurer
-                                .requestMatchers("/ui/issues/**").hasAuthority("admin") // допуск по адресу только обладателям роли
-                                .requestMatchers("/ui/readers/**").hasAnyAuthority("user", "admin") // допуск по адресу только обладателям ролей
-                                .requestMatchers("/ui/readers/**").authenticated() // допуск по адресу только залогиненным, роли пофиг
-                                .requestMatchers("/ui/books/**").permitAll() // допуск по адресу для всех
-//                        .anyRequest().denyAll() // все остальные адреса закрыты для всех
-                                .permitAll()
+                        .requestMatchers("/ui/issues/**").hasAuthority("admin") // допуск по адресу только обладателям роли
+                        .requestMatchers("/ui/readers/**").hasAnyAuthority("user", "admin") // допуск по адресу только обладателям ролей
+                        .requestMatchers("/ui/readers/**").authenticated() // допуск по адресу только залогиненным, роли пофиг
+                        .requestMatchers("/ui/books/**").permitAll() // допуск по адресу для всех
+                        .anyRequest().denyAll() // все остальные адреса закрыты для всех
+
                 )
                 .formLogin(Customizer.withDefaults()) // это форма ввода логина и пароля по умолчанию
 //                .oauth2ResourceServer(configurer -> configurer // это через сервер авторизаций

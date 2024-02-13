@@ -21,7 +21,7 @@ public class IssueServiceImpl implements IssuerService {
     NewIssueRepository issueRepository;
     NewBookRepository bookRepository;
 
-    //    @PostConstruct
+    @PostConstruct
     public void emulateIssues() {
         readerRepository.save(new Reader("Игорь"));
         readerRepository.save(new Reader("Вася"));

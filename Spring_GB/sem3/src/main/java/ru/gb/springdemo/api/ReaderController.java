@@ -27,9 +27,12 @@ public class ReaderController {
     @GetMapping("/{id}")
     @Operation(summary = "Получить читателя", description = "Отдаёт читателя, которого находит по указанному ID")
     public ResponseEntity<Reader> getById(@PathVariable long id) {
-        Reader reader = service.getReaderById(id);
-        if (reader != null) return ResponseEntity.status(HttpStatus.OK).body(reader);
-        else return ResponseEntity.notFound().build();
+        try {
+            Reader reader = service.getReaderById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(reader);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
