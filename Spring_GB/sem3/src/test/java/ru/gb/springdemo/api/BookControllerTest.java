@@ -10,15 +10,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BookControllerTest extends FrameForTests {
-//@BeforeEach
-//void init(){
-//    fillDatabase();
-//}
-//
-//@AfterEach
-//void clean(){
-//    cleanDataBase();
-//}
     @Test
     @Order(10)
     void getAll() {
