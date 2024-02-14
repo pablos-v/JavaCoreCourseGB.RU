@@ -1,4 +1,5 @@
 package org.example.startertimer;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,7 +12,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @RequiredArgsConstructor
 public class TimerAspect {
 
-
+    private final TimerProps properties;
 
     @Pointcut("@annotation(Timer)")
     public void hasTimerAnnotation() {
@@ -25,15 +26,25 @@ public class TimerAspect {
         try {
             proceed = proceedingJoinPoint.proceed();
         } catch (Throwable e) {
-            log.info("exception = [{}, {}]", e.getClass(), e.getMessage());
+            doLog("exception = [{}, {}]", e.getClass(), e.getMessage());
             throw e;
         }
 
         long result = System.currentTimeMillis() - start;
+        String timeCountingValue = "millis";
         String className = String.valueOf(proceedingJoinPoint.getTarget().getClass());
         String methodName = String.valueOf(proceedingJoinPoint.getSignature().getName());
-        log.info("total working time of method {} in class {} is {} millis", methodName, className, result);
+        if (properties.getTimeCounting().equals(TimeCounting.SECONDS)) {
+            result = result / 1000;
+            timeCountingValue = "seconds";
+        }
+        doLog("total working time of method {} in class {} is {} {}", methodName
+                , className, result, timeCountingValue);
 
         return proceed;
+    }
+
+    private void doLog(String text, Object... params) {
+        log.atLevel(properties.getLogLevel()).log(text, params);
     }
 }
