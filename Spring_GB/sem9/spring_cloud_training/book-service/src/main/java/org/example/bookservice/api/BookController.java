@@ -3,6 +3,7 @@ package org.example.bookservice.api;
 import com.github.javafaker.Faker;
 import org.example.Author;
 import org.example.Book;
+import org.example.startertimer.Timer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,11 +36,13 @@ public class BookController {
     }
 
     @GetMapping
+    @Timer
     public List<Book> getAll() {
         return books;
     }
 
     @GetMapping("/random")
+    @Timer
     public Book getRandom() {
         final int randomIndex = ThreadLocalRandom.current().nextInt(books.size());
         return books.get(randomIndex);

@@ -24,3 +24,11 @@ spring:
 #  properties:
 #    hibernate:
 #      dialect: org.hibernate.dialect.PostgreSQLDialect
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
